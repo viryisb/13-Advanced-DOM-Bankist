@@ -29,6 +29,7 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+//Page Navigation (Event delegation)
 
 /* // Selecting elements
 console.log(document.documentElement);
@@ -102,7 +103,7 @@ logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c'); */
 
-const h1 = document.querySelector('h1');
+/* const h1 = document.querySelector('h1');
 const alertH1 = function (e) {
   alert('addEventListener: Gret, you are reading the heading');
   h1.removeEventListener('mouseenter', alertH1);
@@ -110,7 +111,7 @@ const alertH1 = function (e) {
 
 h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); */
 
 //old school
 /* h1.onmouseenter= function (e) {
@@ -126,5 +127,22 @@ const randomColor = () =>
   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
 
 document.querySelector('.nav__link').addEventListener('click', function (e) {
-  console.log(LINK);
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
 });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('Container', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+});
+
+//stop propagation
+//e.stopPropagation(); prefer not to use
+
+//Event delegation
