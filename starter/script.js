@@ -30,7 +30,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// Selecting elements
+/* // Selecting elements
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
@@ -100,4 +100,31 @@ console.log(logo.dataset.versionNumber);
 logo.classList.add('c');
 logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
-logo.classList.contains('c');
+logo.classList.contains('c'); */
+
+const h1 = document.querySelector('h1');
+const alertH1 = function (e) {
+  alert('addEventListener: Gret, you are reading the heading');
+  h1.removeEventListener('mouseenter', alertH1);
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+
+//old school
+/* h1.onmouseenter= function (e) {
+  alert('addEventListener: Gret, you are reading the heading');
+}  */
+
+///////////////////////////////////////
+// Event Propagation in Practice
+//create Random color
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  console.log(LINK);
+});
